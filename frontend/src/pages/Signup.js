@@ -21,6 +21,8 @@ import InputLabel from "@mui/material/InputLabel";
 import { useNavigate } from 'react-router-dom'
 import {signup_user} from '../controllers/user'
 import {signup_business} from '../controllers/business'
+import {get_services,add_service} from '../controllers/service'
+
 
 function Copyright(props) {
   return (
@@ -55,7 +57,14 @@ export default function SignUp() {
   const [business_city, setBusiness_city] = useState("");
   const [type, setType] = useState(10);
 
+  const [services, setServices] = useState([]);
+  const [addServiceType, setAddServiceType] = useState(false);
+  
   const navigate = useNavigate();
+
+  React.useEffect(()=>{
+    get_services().then(data=>setServices(data.message));
+  },[])
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -89,6 +98,18 @@ export default function SignUp() {
         business_description,
         business_service_type,
         business_city
+      }
+      for(let i in services){
+        let isFound=false;
+        if(i.services.service_name.toLowerCase()!==business_service_type.toLowerCase()){
+          let obj={
+            service_name:business_service_type
+          }
+          add_service(obj).then(data=>{console.log(data)});
+        }
+        if(isFound){
+          break;
+        }
       }
       signup_business(obj).then(data=>{
         console.log(data)
@@ -273,21 +294,38 @@ export default function SignUp() {
                     value={business_description}
                   />
                 </Grid>}
-                {type===20 &&<Grid item xs={12}>
-                  <TextField
-                    // autoComplete="given-name"
-                    // name="firstName"
+                {type===20 && <Grid item xs={12} >
+                <FormControl fullWidth>
+                  <InputLabel id="demo-simple-select-label">business_service_type</InputLabel>
+                  <Select
+                    labelId="demo-simple-select-label"
+                    id="business_service_type"
+                    value={type}
+                    label="business_service_type"
+                    onChange={(e) => setBusiness_service_type(e.target.value)}
+                  >
+                    {services.map(
+                      service=>
+                      <MenuItem value={service.service_name}>{service.service_name}</MenuItem>
+                      )
+                    }
+                    <button onClick={()=>setAddServiceType(true)}> + Add Service</button>
+                    
+                  </Select>
+                    {addServiceType && <>
+                      <TextField
                     required
                     fullWidth
-                    id="business_service_type"
-                    label="business_service_type"
+                    id="add_service_name"
+                    label="add_service_name"
                     autoFocus
-                    onChange={(e) => {
-                      setBusiness_service_type(e.target.value);
-                    }}
                     value={business_service_type}
+                    onChange={(e) => setBusiness_service_type(e.target.value)}
                   />
-                </Grid>}
+                    </>}
+                </FormControl>
+              </Grid>
+                }
                 {type===20 && <Grid item xs={12}>
                   <TextField
                     // autoComplete="given-name"

@@ -16,6 +16,9 @@ import {deepOrange} from '@mui/material/colors'
 import Navbar from '../components/Navbar'
 import {useState} from 'react'
 
+import {login_user} from "../controllers/user"
+import {login_business} from "../controllers/business"
+
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -55,14 +58,41 @@ export default function SignIn() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  // API INTEGRATED
   const handleInput = (e) => {
 
-    e.preventDefault();
+    // e.preventDefault();
 
-    setEmail('');
-    setPassword('');
-
-
+    // if(type===10){
+    //   let obj={
+    //     email,
+    //     password
+    //   }
+    //   login_user(obj).then(data=>{
+    //     console.log(data)
+    //     if(data.tag){
+    //       localStorage.setItem("user",data.token)
+    //     }
+    //     else{
+    //       alert(data.message);
+    //     }});
+    // }
+    // else{
+    //   let obj={
+    //     business_email:email,
+    //     business_password:password
+    //   }
+    //   login_business(obj).then(data=>{
+    //     console.log(data)
+    //     if(data.tag){
+    //       localStorage.setItem("business",data.token)
+    //     }
+    //     else{
+    //       alert(data.message);
+    //     }});
+    // }
+    // setEmail('');
+    // setPassword('');
   }
 
   return (
