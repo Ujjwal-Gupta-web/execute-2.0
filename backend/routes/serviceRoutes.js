@@ -4,7 +4,7 @@ const router = express.Router();
 
 const Service=require("../models/Services");
 
-router.post("/",verifyToken,async(req,res)=>{
+router.post("/",async(req,res)=>{
     const {service_name}=req.body;
     const service=new Service({
         service_name
