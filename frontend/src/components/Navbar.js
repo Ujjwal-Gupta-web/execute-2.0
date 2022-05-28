@@ -7,6 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import {red} from '@mui/material/colors'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -29,7 +30,9 @@ const useStyles = makeStyles((theme) => ({
   },
   link: {
     textDecoration: "none",
-    color: "black",
+    color: "red",
+    fontSize: "1.2rem",
+    fontWeight: "bold",
     fontFamily : ["Poppins", "sans-serif"]
   }
 }));
