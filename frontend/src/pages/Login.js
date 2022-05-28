@@ -110,7 +110,7 @@ export default function SignIn() {
         </form>
       </div>
       <Box mt={8}>
-        <Copyright />
+        
       </Box>
     </Container>
   );
