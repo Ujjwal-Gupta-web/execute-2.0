@@ -1,15 +1,15 @@
 const express = require("express");
 const router = express.Router();
 const jwt = require("jsonwebtoken");
-var bcrypt = require('bcryptjs');
-
+const bcrypt = require('bcryptjs');
 const User=require("../models/User");
+const verifyToken = require("../middleware/verifyToken");
 
 
-router.get("/auth", async (req, res) => {
-    const token = req.body.token;
+router.get("/auth", verifyToken ,async (req, res) => {
+    
     try {
-        const decoded = jwt.verify(token, process.env.SECRET_KEY);
+        const decoded = req.body['decoded']
         const user = await User.findOne({ _id: decoded.id }).select("-password");
 
         return res.json({
@@ -80,26 +80,6 @@ router.post("/signup", async (req, res) => {
 
 })
 
-router.get("/getDetails", async (req, res) => {
-
-    let { user_id } = req.body;
-
-    const user = await User.findOne({ _id:user_id });
-
-    if(user){
-        let obj={
-            email:user.email,
-            name:user.name,
-            contact:user.contact
-        }
-        return res.json({ "message": obj, "tag": true })
-    }
-    else{
-        return res.json({ "message": "User doesnot exist", "tag": false })
-    }
-
-    
-})
 
 
 
