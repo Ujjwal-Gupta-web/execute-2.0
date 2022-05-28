@@ -3,6 +3,9 @@ import Navbar from "../components/Navbar";
 import img1 from "../assets/img1.jpg";
 import "../assets/index.css";
 import {useState} from 'react';
+import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
+import FilterVintageIcon from '@mui/icons-material/FilterVintage';
+import img2 from "../assets/birthday.jpg"
 
 
 
@@ -6125,15 +6128,11 @@ export default function Home() {
   
   return (
     <div className="home_page ">
-      {/* <div className="title">
-        <h1 className="font-luckyOne text-[4rem] p-5 m-4">Event Wala</h1>
-      </div> */}
-
-      <div className="nav">
+        <div className="nav">
         <Navbar />
       </div>
 
-      <div className="hero_section flex flex-row ">
+      <div className="hero_section flex flex-row p-5 mb-10 ">
 
         <div className="extra section flex flex-col">
         <div className="welcome p-5 ml-10">
@@ -6211,6 +6210,42 @@ export default function Home() {
           <img src={img1} className="rounded-xl" />
         </div>
       </div>
+
+      <div className="seemore text-center p-10">
+        <h1 className="text-center text-white font-bold text-[4rem]"> See What We Offer ?</h1>
+        <button>
+        <ArrowDownwardIcon style={{ fontSize: 50, color: "white"}} />
+        </button>
+      </div>
+
+
+      <div className="section-1 p-10 m-5">
+        <div className="planning flex p-10 flex-row ">
+          <FilterVintageIcon style={{ fontSize: 40, color: "white", marginRight: "10px"}}/>
+          <h1 className="birthday font-luckyOne text-3xl text-white" > Are you planning to organize a birthday party?</h1>
+          <img className="rounded-xl shadow-2xl m-5" src={img2}/>
+        </div>
+
+        <div className="planning flex flex-row p-10">
+          <FilterVintageIcon style={{ fontSize: 40, color: "white", marginRight: "10px"}}/>
+          <h1 className="birthday font-luckyOne text-3xl text-white" > Are you planning to organize a Wedding?</h1>
+          <img className="rounded-xl shadow-2xl m-5" src={img2}/>
+        </div>
+
+        <div className="planning flex flex-row p-10 ">
+          <FilterVintageIcon style={{ fontSize: 40, color: "white", marginRight: "10px"}}/>
+          <h1 className="birthday font-luckyOne text-3xl text-white" > Are you planning to organize a Party?</h1>
+          <img className="rounded-xl shadow-2xl m-5" src={img2}/>
+        </div>
+
+        {/* <div className="planning flex flex-row float-right">
+          <FilterVintageIcon style={{ fontSize: 40, color: "white", marginRight: "10px"}}/>
+          <h1 className="birthday font-luckyOne text-3xl text-white" > Are you planning to organize a birthday party?</h1>
+        </div> */}
+
+      </div>
+
+
 
      
     </div>
