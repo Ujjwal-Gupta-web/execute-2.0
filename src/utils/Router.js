@@ -11,7 +11,6 @@ export default function Router(){
     return (
         <>
         <BrowserRouter>
-
         <Routes>
             <Route exact path="/" element={<Home />} />
             <Route exact path="/events" element={<Events />} />
@@ -19,7 +18,6 @@ export default function Router(){
             <Route exact path="/login" element={<Login />} />
             <Route exact path="/signup" element={<Signup />} />
         </Routes>
-
         </BrowserRouter>
 
 

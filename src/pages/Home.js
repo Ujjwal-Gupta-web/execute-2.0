@@ -7,7 +7,7 @@ export default function Home(){
 
     <div className="home_page">
       <div className="title">
-        <h1>Event Wala</h1>
+        <h1 >Event Wala</h1>
       </div>
 
       <div className="nav">
