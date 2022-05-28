@@ -63,7 +63,7 @@ router.post("/signup", async (req, res) => {
         business_city
     }= req.body;
 
-    const result = await User.findOne({ business_email });
+    const result = await Business.findOne({ business_email });
 
     if (result) {
         return res.json({ "message": "Business already exists", "tag": false })
