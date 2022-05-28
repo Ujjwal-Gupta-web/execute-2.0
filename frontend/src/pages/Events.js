@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: theme.spacing(8),
   },
   card: {
-    height: '100%',
+    // height: '100%',
     display: 'flex',
     flexDirection: 'column',
   },
@@ -59,12 +59,8 @@ export default function Events() {
   return (
     <React.Fragment>
       <CssBaseline />
-        <div>
             <Navbar />
-        </div>
-        
       <main>
-        {/* Hero unit */}
         <div className={classes.heroContent}>
           <Container maxWidth="sm">
             <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
