@@ -4,14 +4,9 @@ body{
     box-sizing: border-box;
     background-color: #e6e6e6; 
 }
-@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Calistoga&family=Luckiest+Guy&family=Roboto+Mono&display=swap');
-.title h1{
-    padding: 1rem;
-    text-align: center;
-    margin: 1rem;
-    font-family: 'Calistoga', cursive;
-    font-size: 3rem;
-    letter-spacing: 2px;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-}
+@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Calistoga&family=Luckiest+Guy&family=Roboto+Mono&display=swap');
 
