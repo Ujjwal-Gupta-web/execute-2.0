@@ -85,7 +85,7 @@ router.post("/signup", async (req, res) => {
 router.post("/review",verifyToken,isUserExist,async (req, res) => {
 
     let { business_id,rating } = req.body;
-
+    
     const review = new Review({
         business_id,rating
     })
