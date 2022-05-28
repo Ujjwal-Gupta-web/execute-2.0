@@ -44,6 +44,16 @@ const useStyles = makeStyles((theme) => ({
       border: "2px solid red",
       textTransform: "lowercase"
   },
+  modalservice:{
+    width: "100%",
+    height: "300px",
+    marginRight: "2em"
+  },
+  modalservices:{
+      display: "flex",
+      justifyContent: "space-between",
+      maxWidth: "500px"
+  }
 }));
 
 export default function RecipeReviewCard({service}) {
@@ -100,24 +110,47 @@ export default function RecipeReviewCard({service}) {
             aria-labelledby="alert-dialog-slide-title"
             aria-describedby="alert-dialog-slide-description"
         >
-            <DialogTitle id="alert-dialog-slide-title">{"Use Google's location service?"}</DialogTitle>
-            <DialogContent>
+            <DialogTitle id="alert-dialog-slide-title">
+                {"Service Name"}
+            </DialogTitle>
+            <DialogContent className={classes.modalservices+""} >
             <CardMedia
-                className={classes.media}
+                className={classes.media+" "+classes.modalservice}
                 image={service.profileimage}
             />
             <DialogContentText id="alert-dialog-slide-description">
-                Let Google help apps determine location. This means sending anonymous location data to
-                Google, even when no apps are running.
+                <Typography color='secondary' variant='h6' className={classes.reviews}>
+                    Services we Provide
+                </Typography>
+                <Typography color='default' variant='p' className={classes.reviews}>
+                    {/* {service.address} */}
+                    {service.service}
+                </Typography>
+                
+                <Typography color='default' variant='body2' className={classes.reviews}>
+                    {service.address}
+                </Typography>
             </DialogContentText>
+            
             </DialogContent>
-            <DialogActions>
-            <Button onClick={handleClose} color="primary">
-                Disagree
-            </Button>
-            <Button onClick={handleClose} color="primary">
+            <DialogActions style={{display: "flex","justifyContent":"space-between"}}>
+            <CardActions disableSpacing>
+                    <Badge badgeContent={service.rating} color="secondary">
+                        <GradeIcon/>
+                    </Badge>
+                <Typography color='primary' variant='body1' className={classes.reviews}>{service.reviews} reviews</Typography>
+            </CardActions>
+            <CardActions disableSpacing >
+                <Button variant="contained" size="large" color="secondary" aria-label="buy" className='priceTag' >
+                    &#8377; {service.price}
+                </Button>
+                <IconButton className={classes.share} aria-label="share">
+                    <ShareIcon />
+                </IconButton>
+            </CardActions>
+            {/* <Button onClick={handleClose} color="primary">
                 Agree
-            </Button>
+            </Button> */}
             </DialogActions>
         </Dialog>
       </>
