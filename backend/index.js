@@ -40,5 +40,5 @@ app.use("/api/business", businessRoutes);
 
 
 app.listen(port, () => {
-    console.log("The server is up and running at port 5000");
+    console.log(`The server is up and running at port ${port}`);
 })
