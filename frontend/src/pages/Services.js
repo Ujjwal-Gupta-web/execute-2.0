@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Navbar from "../components/Navbar"
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
@@ -7,51 +7,52 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import ServiceCard from '../components/ServiceCard'
 import Filter from '../components/Filter';
+import {get_services} from "../controllers/service"
+import {get_businesses} from "../controllers/business"
 
-
-const services = [
-  {
-    "profileimage": './images/Birthday.jpg',
-    "name": 'Chai Suta Bar',
-    "service": "We provide Chai and sutta for special occassions.",
-    "address": "Shop No. 28 & 29 Bahuguna Market Auckland Road,Ashok Nagar, near NCZCC, Prayagraj, Uttar Pradesh 211001",
-    "city": "Prayagraj",
-    "state": "Uttar Pradesh",
-    "price": "5000",
-    reviews: 510,
-    rating: 4.7
-  },
-  {
-    "profileimage": './images/Party.jpg',
-    "name": 'Top & Town',
-    "address": "Shop No. 28 & 29 Bahuguna Market Auckland Road,Ashok Nagar, near NCZCC, Prayagraj, Uttar Pradesh 211001",
-    "city": "Prayagraj",
-    "state": "Uttar Pradesh",
-    "price": "2800",
-    reviews: 51,
-    rating: 4.7
-  },
-  {
-    "profileimage": './images/Reception.jpg',
-    "name": 'Eat On',
-    "address": "Shop No. 28 & 29 Bahuguna Market Auckland Road,Ashok Nagar, near NCZCC, Prayagraj, Uttar Pradesh 211001",
-    "city": "Prayagraj",
-    "state": "Uttar Pradesh",
-    "price": "10,000",
-    reviews: 10,
-    rating: 3.2
-  },
-  {
-    "profileimage": './images/Wedding.jpg',
-    "name": 'KFC',
-    "address": "Shop No. 28 & 29 Bahuguna Market Auckland Road,Ashok Nagar, near NCZCC, Prayagraj, Uttar Pradesh 211001",
-    "city": "Prayagraj",
-    "state": "Uttar Pradesh",
-    "price": "3000",
-    reviews: 588,
-    rating: 4.1
-  },
-];
+// const services = [
+//   {
+//     "profileimage": './images/Birthday.jpg',
+//     "name": 'Chai Suta Bar',
+//     "service": "We provide Chai and sutta for special occassions.",
+//     "address": "Shop No. 28 & 29 Bahuguna Market Auckland Road,Ashok Nagar, near NCZCC, Prayagraj, Uttar Pradesh 211001",
+//     "city": "Prayagraj",
+//     "state": "Uttar Pradesh",
+//     "price": "5000",
+//     reviews: 510,
+//     rating: 4.7
+//   },
+//   {
+//     "profileimage": './images/Party.jpg',
+//     "name": 'Top & Town',
+//     "address": "Shop No. 28 & 29 Bahuguna Market Auckland Road,Ashok Nagar, near NCZCC, Prayagraj, Uttar Pradesh 211001",
+//     "city": "Prayagraj",
+//     "state": "Uttar Pradesh",
+//     "price": "2800",
+//     reviews: 51,
+//     rating: 4.7
+//   },
+//   {
+//     "profileimage": './images/Reception.jpg',
+//     "name": 'Eat On',
+//     "address": "Shop No. 28 & 29 Bahuguna Market Auckland Road,Ashok Nagar, near NCZCC, Prayagraj, Uttar Pradesh 211001",
+//     "city": "Prayagraj",
+//     "state": "Uttar Pradesh",
+//     "price": "10,000",
+//     reviews: 10,
+//     rating: 3.2
+//   },
+//   {
+//     "profileimage": './images/Wedding.jpg',
+//     "name": 'KFC',
+//     "address": "Shop No. 28 & 29 Bahuguna Market Auckland Road,Ashok Nagar, near NCZCC, Prayagraj, Uttar Pradesh 211001",
+//     "city": "Prayagraj",
+//     "state": "Uttar Pradesh",
+//     "price": "3000",
+//     reviews: 588,
+//     rating: 4.1
+//   },
+// ];
 
 const locations=["Prayagraj","Mumbai","London","England","Kolkata"];
 
@@ -71,6 +72,13 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Services() {
+  const [services,setServices]=useState([]);
+  const [businesses,setBussinesses]=useState([]);
+
+  useEffect(()=>{
+    get_services().then(data=>setServices(data.message));
+    get_businesses().then(data=>setBussinesses(data.message));
+  },[])
   const classes = useStyles();
   return (
     <>
