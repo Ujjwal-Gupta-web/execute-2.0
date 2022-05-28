@@ -50,7 +50,7 @@ router.post("/login", async (req, res) => {
 
 router.post("/signup", async (req, res) => {
 
-    let { email,
+    let { contact,email,
         password,
         name} = req.body;
 
@@ -63,6 +63,7 @@ router.post("/signup", async (req, res) => {
         var hash = bcrypt.hashSync(password, 8);
         password = hash;
         const user = new User({
+            contact,
             email,
             password,
             name
@@ -88,7 +89,8 @@ router.get("/getDetails", async (req, res) => {
     if(user){
         let obj={
             email:user.email,
-            name:user.name
+            name:user.name,
+            contact:user.contact
         }
         return res.json({ "message": obj, "tag": true })
     }
