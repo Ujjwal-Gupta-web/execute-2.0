@@ -17,6 +17,8 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Slide from '@material-ui/core/Slide';
+import WhatsAppIcon from '@material-ui/icons/WhatsApp';
+import CallIcon from '@material-ui/icons/Call';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
@@ -41,8 +43,8 @@ const useStyles = makeStyles((theme) => ({
       paddingTop: "0.5em",
   },
   priceTag: {
-      border: "2px solid red",
-      textTransform: "lowercase"
+      backgroundColor: "#22d143",
+      color: "white",
   },
   modalservice:{
     width: "100%",
@@ -73,15 +75,16 @@ export default function RecipeReviewCard({service}) {
         <CardMedia
             className={classes.media}
             image={service.profileimage}
+            alt={"No Preview"}
             // title="Paella dish"
         />
         <CardContent>
             <Typography gutterBottom variant="h6" component="h2">
-                {service.name}
+                {service.business_name}
             </Typography>
             <Typography variant="body" color="textSecondary" component="p">
                 {
-                    ((service.address).length>50)?((service.address).substring(0,50)+"...."): service.address
+                    ((service.business_city[0]).length>50)?((service.business_city[0]).substring(0,50)+"...."): service.business_city[0]
                 }
             </Typography>
         </CardContent>
@@ -89,14 +92,16 @@ export default function RecipeReviewCard({service}) {
                 <Badge badgeContent={service.rating} color="secondary">
                     <GradeIcon/>
                 </Badge>
-            <Typography color='primary' variant='body1' className={classes.reviews}>{service.reviews} reviews</Typography>
+            {/* <Typography color='primary' variant='body1' className={classes.reviews}>{service.reviews} reviews</Typography> */}
         </CardActions>
         <CardActions disableSpacing>
-            <Button variant="contained" size="large" color="secondary" aria-label="buy" className='priceTag' >
-                &#8377; {service.price}
+            <Button variant="contained" size="large" aria-label="buy" className={classes.priceTag}>
+                {/* &#8377; {service.price} */}
+                <WhatsAppIcon/>
             </Button>
             <IconButton className={classes.share} aria-label="share">
-            <ShareIcon />
+            {/* <ShareIcon /> */}
+            <CallIcon/>
             </IconButton>
         </CardActions>
 
@@ -111,7 +116,8 @@ export default function RecipeReviewCard({service}) {
             aria-describedby="alert-dialog-slide-description"
         >
             <DialogTitle id="alert-dialog-slide-title">
-                {"Service Name"}
+                {service.business_name}
+                
             </DialogTitle>
             <DialogContent className={classes.modalservices+""} >
             <CardMedia
@@ -124,11 +130,11 @@ export default function RecipeReviewCard({service}) {
                 </Typography>
                 <Typography color='default' variant='p' className={classes.reviews}>
                     {/* {service.address} */}
-                    {service.service}
+                    {service.business_description}
                 </Typography>
                 
                 <Typography color='default' variant='body2' className={classes.reviews}>
-                    {service.address}
+                    {service.business_city[0]}
                 </Typography>
             </DialogContentText>
             
@@ -141,11 +147,13 @@ export default function RecipeReviewCard({service}) {
                 <Typography color='primary' variant='body1' className={classes.reviews}>{service.reviews} reviews</Typography>
             </CardActions>
             <CardActions disableSpacing >
-                <Button variant="contained" size="large" color="secondary" aria-label="buy" className='priceTag' >
-                    &#8377; {service.price}
+                <Button variant="contained" size="large" aria-label="buy" className={classes.priceTag} >
+                    {/* &#8377; {service.price} */}
+                    <WhatsAppIcon/>
                 </Button>
                 <IconButton className={classes.share} aria-label="share">
-                    <ShareIcon />
+                    {/* <ShareIcon /> */}
+                    <CallIcon/>
                 </IconButton>
             </CardActions>
             {/* <Button onClick={handleClose} color="primary">

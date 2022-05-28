@@ -75,10 +75,15 @@ export default function Services() {
   const [services,setServices]=useState([]);
   const [businesses,setBussinesses]=useState([]);
 
+
   useEffect(()=>{
     get_services().then(data=>setServices(data.message));
-    get_businesses().then(data=>setBussinesses(data.message));
+    get_businesses().then(data=>setBussinesses(data.business));
+    console.log(businesses);
+    console.log(services);
   },[])
+  console.log(businesses);
+  console.log(services);
   const classes = useStyles();
   return (
     <>
@@ -88,9 +93,10 @@ export default function Services() {
       <main>
         <Container className={classes.cardGrid} maxWidth="lg">
           <Grid container spacing={4}>
-            {services.map((service,i) => (
+            {
+              businesses && businesses.map((service,i) => (
               <Grid item key={i} xs={12} sm={6} md={4} lg={3}>
-                <ServiceCard service={service} />
+                { service && <ServiceCard service={service} />}
               </Grid>
             ))}
           </Grid>

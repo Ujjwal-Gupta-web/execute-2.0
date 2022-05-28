@@ -46,6 +46,7 @@ export const get_businesses = async() =>{
         }
     });
     const ans = await res.json();
+    console.log(ans);
     return ans;
 }
 
