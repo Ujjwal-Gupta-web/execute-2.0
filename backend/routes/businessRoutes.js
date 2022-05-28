@@ -29,9 +29,9 @@ router.get("/auth", verifyToken ,async (req, res) => {
 router.post("/login", async (req, res) => {
 
     const obj = req.body;
-    const result = await Business.findOne({ business_email: obj.email });
+    const result = await Business.findOne({ business_email: obj.business_email });
     if (result) {
-        bcrypt.compare(req.body.password, result.business_password, function (err, hashed) {
+        bcrypt.compare(req.body.business_password, result.business_password, function (err, hashed) {
             if (hashed === true) {
                 const token = jwt.sign({ id: result._id }, process.env.SECRET_KEY);
                 return res.json({ "message": "Login success", "token": token, "tag": true })
