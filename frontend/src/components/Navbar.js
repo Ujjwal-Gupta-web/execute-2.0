@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
   },
   link: {
     textDecoration: "none",
-    color: "red",
+    color: "#ea580c",
     fontSize: "1.2rem",
     fontWeight: "bold",
     fontFamily : ["Poppins", "sans-serif"]

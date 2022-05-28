@@ -67,10 +67,10 @@ export default function Events() {
         {/* Hero unit */}
         <div className={classes.heroContent}>
           <Container maxWidth="sm">
-            <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
+            <Typography component="h1" variant="h2" align="center" style={{color: "white"}} gutterBottom>
             Life is an event. Make it memorable.
             </Typography>
-            <Typography variant="h5" align="center" color="textSecondary" paragraph>
+            <Typography variant="h5" align="center" style={{color: "#e6e6e6"}} paragraph>
             Our business will make memories with you.
             </Typography>
           </Container>
