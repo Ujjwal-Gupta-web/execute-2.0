@@ -13,6 +13,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import {deepOrange} from '@mui/material/colors'
+import Navbar from '../components/Navbar'
 
 function Copyright() {
   return (
@@ -51,8 +52,13 @@ export default function SignIn() {
   const classes = useStyles();
 
   return (
+    <>
+     <div className="nav">
+        <Navbar />
+      </div>
     <Container component="main" maxWidth="xs">
       <CssBaseline />
+     
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon style={{color: deepOrange}}/>
@@ -114,5 +120,6 @@ export default function SignIn() {
         
       </Box>
     </Container>
+    </>
   );
 }

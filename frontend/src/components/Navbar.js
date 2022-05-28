@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
   },
   navbar: {
     backgroundColor: "#e6e6e6",
-    borderRadius: "15px",
+    borderRadius: "0 0 15px 15px",
     boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px"
     
   },
