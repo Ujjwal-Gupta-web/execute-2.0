@@ -3,6 +3,7 @@ const router = express.Router();
 const Booking=require("../models/Booking");
 const userConfirmation=require("../models/userConfirmation");
 const verifyToken=require("../middleware/verifyToken")
+
 router.post("/",verifyToken, async (req, res) => {
     let {
         business_id,
@@ -58,8 +59,15 @@ try{
                     return res.status(500).json({tag:false})
                 }
                 else{
-                    let obj=await userConfirmation.deleteOne({_id:userConfirmation_id});
-                    return res.status(200).json({tag:true})
+                    userConfirmation.deleteOne({_id:userConfirmation_id}, function (err) {
+                        if (err) {
+                            
+                            return res.json({ "message": "Some error occured try again", "tag": false })
+                        }
+                        else {
+                            return res.json({ "message": "Deleted", "tag": true })
+                        }
+                    });
                 }
             })
         }
@@ -93,3 +101,6 @@ catch(e){
     return res.status(500).json({tag:false})
 }       
 })
+
+
+module.exports = router;
