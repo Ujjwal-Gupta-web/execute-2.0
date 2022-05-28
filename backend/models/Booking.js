@@ -1,6 +1,5 @@
 const mongoose=require('mongoose');
 const Schema = mongoose.Schema;
-
 const Booking = new Schema({
     business_id:String,
     user_id:String,
@@ -8,5 +7,6 @@ const Booking = new Schema({
     payment_type:Boolean,
     payment_amount:Integer
 });
+
 
 module.exports = mongoose.model('Bookings', Booking); 
