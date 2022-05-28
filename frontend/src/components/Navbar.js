@@ -13,7 +13,10 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1
   },
   navbar: {
-    backgroundColor: "white"
+    backgroundColor: "#e6e6e6",
+    borderRadius: "15px",
+    boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px"
+    
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -26,7 +29,8 @@ const useStyles = makeStyles((theme) => ({
   },
   link: {
     textDecoration: "none",
-    color: "black"
+    color: "black",
+    fontFamily : ["Poppins", "sans-serif"]
   }
 }));
 
@@ -42,7 +46,7 @@ export default function ButtonAppBar() {
       <AppBar position="static" className={classes.navbar}>
         <Toolbar>
           <Typography variant="h6" className={classes.title}>
-            <Link className={classes.link} to="/">Event wala</Link>
+            <Link className="text-orange-600" to="/">Event wala</Link>
           </Typography>
           <Button color="inherit">
             <Link className={classes.link} to="/">Home</Link>

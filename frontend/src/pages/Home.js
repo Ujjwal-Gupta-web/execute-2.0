@@ -17,10 +17,10 @@ export default function Home(){
 
       <div className="hero_section flex flex-row ">
       <div className="welcome p-5 ml-10">
-        <h1 className="font-luckyOne text-[3rem] m-5 p-5"> Welcome to Event Wala !</h1>
+        <h1 className="font-luckyOne text-[5rem] text-orange-600 m-5 p-5"> Welcome to Event Wala !</h1>
       </div>
       
-      <div className="shadow-xl absolute right-0 m-10 rounded-xl">
+      <div className="shadow-2xl absolute right-0 m-10 rounded-xl">
         <img src={img1} className="" />
       </div>
       </div>
