@@ -3,7 +3,6 @@ const Schema = mongoose.Schema;
 
 const Review = new Schema({
     business_id:String,
-    user_id:String,
     rating:Number
 });
 

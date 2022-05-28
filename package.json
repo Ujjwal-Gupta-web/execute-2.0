@@ -1,0 +1,6 @@
+{
+    "scripts": {
+        "start":"git status & git add . & git commit -m 'update-version-5' & git push origin main",
+        "test": "echo \"Error: no test specified\" && exit 1"
+      }
+}
