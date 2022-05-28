@@ -1,11 +1,18 @@
 import React from 'react';
 
-function App() {
-  return (
-    <div className="App">
-      Tera dhyaan kidhr h kiranawala idhr h
-    </div>
-  );
-}
+import Navbar from '../components/Navbar'
 
-export default App;
+export default function Home(){
+  return(
+
+    <div className="home_page">
+      <div className="title">
+        <h1>Event Wala</h1>
+      </div>
+
+      <div className="nav">
+        <Navbar />
+      </div>
+    </div>
+  )
+}
