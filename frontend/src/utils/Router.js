@@ -5,6 +5,7 @@ import Events from '../pages/Events';
 import Services from '../pages/Services';
 import Login from '../pages/Login';
 import Signup from '../pages/Signup';
+import CustomEvent from '../pages/CustomEvent';
 
 export default function Router(){
 
@@ -17,6 +18,7 @@ export default function Router(){
             <Route exact path="/services" element={<Services />} />
             <Route exact path="/login" element={<Login />} />
             <Route exact path="/signup" element={<Signup />} />
+            <Route exact path="/custom-event" element={<CustomEvent />} />
         </Routes>
         </BrowserRouter>
 
