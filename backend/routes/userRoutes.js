@@ -4,6 +4,8 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require('bcryptjs');
 const User=require("../models/User");
 const verifyToken = require("../middleware/verifyToken");
+const Review = require("../models/Review");
+const isUserExist = require("../middleware/isUserExist");
 
 
 router.get("/auth", verifyToken ,async (req, res) => {
@@ -55,7 +57,7 @@ router.post("/signup", async (req, res) => {
         name} = req.body;
 
     const result = await User.findOne({ email });
-
+    
     if (result) {
         return res.json({ "message": "User already exists", "tag": false })
     }
@@ -73,13 +75,31 @@ router.post("/signup", async (req, res) => {
                 console.error(error)
                 return res.json({ "message": "try again", "tag": false })
             }
-            //console.log(document);
-            return res.json({ "message": "User SignUp Success", tag: true })
+            const token = jwt.sign({ id: document._id }, process.env.SECRET_KEY);
+            return res.json({ "message": "User SignUp Success", tag: true,token })
         })
     }
 
 })
 
+router.post("/review",verifyToken,isUserExist,async (req, res) => {
+
+    let { business_id,rating } = req.body;
+
+    const review = new Review({
+        business_id,rating
+    })
+
+    review.save(function (error, document) {
+        if (error) {
+            console.error(error)
+            return res.json({ "message": "try again", "tag": false })
+        }
+        //console.log(document);
+        return res.json({ "message": "Review added", tag: true })
+    })
+
+})
 
 
 

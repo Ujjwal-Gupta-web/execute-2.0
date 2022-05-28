@@ -87,7 +87,8 @@ router.post("/signup", async (req, res) => {
                 return res.json({ "message": "try again", "tag": false })
             }
             //console.log(document);
-            return res.json({ "message": "Business SignUp Success", tag: true })
+            const token = jwt.sign({ id: document._id }, process.env.SECRET_KEY);
+            return res.json({ "message": "Business SignUp Success", tag: true,token })
         })
     }
 
