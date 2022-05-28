@@ -12,7 +12,8 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-
+import Navbar from '../components/Navbar'
+import {useState} from 'react'
 function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
@@ -29,19 +30,34 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignUp() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+
+  const [firstname, setFirstname] = useState('');
+  const [lastname, setLastname] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+
+
+
+   const handleSubmit = (e) => {
+    e.preventDefault();
+
+    setFirstname('');
+    setLastname('');
+    setEmail('');
+    setPassword('');
+    
   };
 
   return (
+    <>
+     <div className="nav">
+        <Navbar />
+      </div>
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
+        
         <Box
           sx={{
             marginTop: 8,
@@ -50,7 +66,7 @@ export default function SignUp() {
             alignItems: 'center',
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+          <Avatar sx={{ m: 1, bgcolor: '#ea580c' }}>
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
@@ -67,6 +83,9 @@ export default function SignUp() {
                   id="firstName"
                   label="First Name"
                   autoFocus
+                  onChange={(e) => {setFirstname(e.target.value);}}
+                  value={firstname}
+
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -77,6 +96,8 @@ export default function SignUp() {
                   label="Last Name"
                   name="lastName"
                   autoComplete="family-name"
+                  onChange={(e)=> {setLastname(e.target.value);}}
+                  value={lastname}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -87,6 +108,8 @@ export default function SignUp() {
                   label="Email Address"
                   name="email"
                   autoComplete="email"
+                  onChange={(e)=>{setEmail(e.target.value);}}
+                  value={email}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -98,6 +121,8 @@ export default function SignUp() {
                   type="password"
                   id="password"
                   autoComplete="new-password"
+                  onChange={(e)=> {setPassword(e.target.value);}}
+                  value={password}
                 />
               </Grid>
               
@@ -107,6 +132,8 @@ export default function SignUp() {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
+              onClick={handleSubmit}
+
             >
               Sign Up
             </Button>
@@ -122,5 +149,6 @@ export default function SignUp() {
   
       </Container>
     </ThemeProvider>
+    </>
   );
 }

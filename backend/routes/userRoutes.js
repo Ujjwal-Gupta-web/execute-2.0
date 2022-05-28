@@ -1,15 +1,17 @@
 const express = require("express");
 const router = express.Router();
 const jwt = require("jsonwebtoken");
-var bcrypt = require('bcryptjs');
-
+const bcrypt = require('bcryptjs');
 const User=require("../models/User");
+const verifyToken = require("../middleware/verifyToken");
+const Review = require("../models/Review");
+const isUserExist = require("../middleware/isUserExist");
 
 
-router.get("/auth", async (req, res) => {
-    const token = req.body.token;
+router.get("/auth", verifyToken ,async (req, res) => {
+    
     try {
-        const decoded = jwt.verify(token, process.env.SECRET_KEY);
+        const decoded = req.body['decoded']
         const user = await User.findOne({ _id: decoded.id }).select("-password");
 
         return res.json({
@@ -50,12 +52,12 @@ router.post("/login", async (req, res) => {
 
 router.post("/signup", async (req, res) => {
 
-    let { email,
+    let { contact,email,
         password,
         name} = req.body;
 
     const result = await User.findOne({ email });
-
+    
     if (result) {
         return res.json({ "message": "User already exists", "tag": false })
     }
@@ -63,6 +65,7 @@ router.post("/signup", async (req, res) => {
         var hash = bcrypt.hashSync(password, 8);
         password = hash;
         const user = new User({
+            contact,
             email,
             password,
             name
@@ -72,31 +75,30 @@ router.post("/signup", async (req, res) => {
                 console.error(error)
                 return res.json({ "message": "try again", "tag": false })
             }
-            //console.log(document);
-            return res.json({ "message": "User SignUp Success", tag: true })
+            const token = jwt.sign({ id: document._id }, process.env.SECRET_KEY);
+            return res.json({ "message": "User SignUp Success", tag: true,token })
         })
     }
 
 })
 
-router.get("/getDetails", async (req, res) => {
+router.post("/review",verifyToken,isUserExist,async (req, res) => {
 
-    let { user_id } = req.body;
+    let { business_id,rating } = req.body;
 
-    const user = await User.findOne({ _id:user_id });
+    const review = new Review({
+        business_id,rating
+    })
 
-    if(user){
-        let obj={
-            email:user.email,
-            name:user.name
+    review.save(function (error, document) {
+        if (error) {
+            console.error(error)
+            return res.json({ "message": "try again", "tag": false })
         }
-        return res.json({ "message": obj, "tag": true })
-    }
-    else{
-        return res.json({ "message": "User doesnot exist", "tag": false })
-    }
+        //console.log(document);
+        return res.json({ "message": "Review added", tag: true })
+    })
 
-    
 })
 
 
