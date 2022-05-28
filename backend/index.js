@@ -7,7 +7,9 @@ const cors = require("cors");
 // API ROUTES
 const userRoutes = require("./routes/userRoutes")
 const businessRoutes = require("./routes/businessRoutes")
-
+const bookingRoutes = require("./routes/bookingRoutes")
+const serviceRoutes = require("./routes/serviceRoutes")
+const interfaceRoute=require("./routes/Interface")
 // DOTENV CONFIG
 require('dotenv').config();
 
@@ -37,7 +39,9 @@ mongoose.connect(DB, { useNewUrlParser: true, useUnifiedTopology: true }).then((
 // APIS
 app.use("/api/user", userRoutes);
 app.use("/api/business", businessRoutes);
-
+app.use("/api/booking", bookingRoutes);
+app.use("/api/service", serviceRoutes);
+app.use("/api", interfaceRoute);
 
 app.listen(port, () => {
     console.log(`The server is up and running at port ${port}`);
