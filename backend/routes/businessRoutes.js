@@ -59,7 +59,8 @@ router.post("/signup", async (req, res) => {
         business_website_url,
         business_description,   
         business_service_type,   
-        business_password
+        business_password,
+        business_city
     }= req.body;
 
     const result = await User.findOne({ business_email });
@@ -79,7 +80,8 @@ router.post("/signup", async (req, res) => {
                 business_website_url,
                 business_description,   
                 business_service_type,   
-                business_password
+                business_password,
+                business_city
             })
         user.save(function (error, document) {
             if (error) {

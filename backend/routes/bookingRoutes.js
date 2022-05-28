@@ -2,8 +2,8 @@ const express = require("express");
 const router = express.Router();
 const Booking=require("../models/Booking");
 const userConfirmation=require("../models/userConfirmation");
-
-router.post("/", async (req, res) => {
+const verifyToken=require("../middleware/verifyToken")
+router.post("/",verifyToken, async (req, res) => {
     let {
         business_id,
         user_id,
@@ -26,7 +26,7 @@ router.post("/", async (req, res) => {
 
 })
 
-router.get("/", async (req, res) => {
+router.get("/",verifyToken, async (req, res) => {
 
     const bookings = await Booking.find().sort({_id:-1});
 
@@ -37,7 +37,7 @@ router.get("/", async (req, res) => {
 
 })
 
-router.put("/:id", async (req, res) => {
+router.put("/:id", verifyToken,async (req, res) => {
 try{
    const {
         userConfirmation_id,
