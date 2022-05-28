@@ -5,12 +5,17 @@ const userConfirmation = new Schema({
     business_id:String,
     user_id:String,
     user_status:{
-        type:Boolean,
+        type:Number,
         default:0
     },
     business_status:{
-        type:Boolean,
+        type:Number,
         default:0
+    },
+    amt:{
+        type:Number,
+        default:0,
+        required:true
     },
     msg:{
         required:true,
