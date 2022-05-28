@@ -6,26 +6,31 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import EventCard from '../components/EventCard'
+import {Link} from 'react-router-dom'
 
 const events = [
     {
+      id: 1,
       url: './images/Birthday.jpg',
       title: 'Birthday'
     },
     {
+      id: 2,
       url: './images/Wedding.jpg',
       title: 'Wedding'
     },
     {
+      id: 3,
       url: './images/Reception.jpg',
       title: 'Reception'
     },
     {
+      id: 4,
       url: './images/Party.jpg',
       title: 'Party'
     },
   ];
-
+  
 const useStyles = makeStyles((theme) => ({
   heroContent: {
     backgroundColor: "#ea580c",
@@ -75,10 +80,12 @@ export default function Events() {
           <Grid container spacing={4}>
             {events.map((event,i) => (
               <Grid item key={i} xs={12} sm={6} md={4}>
-                <EventCard
-                    url= {event.url}
-                    title={event.title}
-                />
+                <Link className={classes.link} to={`/custom-event#${event.id}`}>
+                  <EventCard
+                      url= {event.url}
+                      title={event.title}
+                  />
+                </Link>
               </Grid>
             ))}
           </Grid>
