@@ -28,7 +28,7 @@ const events = [
 
 const useStyles = makeStyles((theme) => ({
   heroContent: {
-    backgroundColor: theme.palette.background.paper,
+    backgroundColor: "#ea580c",
     padding: theme.spacing(8, 0, 6),
   },
   cardGrid: {
@@ -57,7 +57,7 @@ export default function Events() {
   const classes = useStyles();
 
   return (
-    <React.Fragment>
+    <>
       <CssBaseline />
         <div>
             <Navbar />
@@ -97,6 +97,6 @@ export default function Events() {
                 We are event wala
         </Typography>
       </footer>
-    </React.Fragment>
+    </>
   );
 }
