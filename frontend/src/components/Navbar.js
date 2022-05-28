@@ -34,6 +34,11 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "1.2rem",
     fontWeight: "bold",
     fontFamily : ["Poppins", "sans-serif"]
+  },
+  navbarCol: {
+    display: "flex",
+
+    flexDirection: "column",
   }
 }));
 
@@ -47,10 +52,11 @@ export default function ButtonAppBar() {
   return (
     <div className={classes.root}>
       <AppBar position="static" className={classes.navbar}>
-        <Toolbar>
+        <Toolbar className={classes.navbarCol} >
           <Typography variant="h6" className={classes.title}>
             <Link className="text-orange-600" to="/">Event wala</Link>
           </Typography>
+          <div>
           <Button color="inherit">
             <Link className={classes.link} to="/">Home</Link>
          </Button>
@@ -66,6 +72,7 @@ export default function ButtonAppBar() {
           <Button color="inherit">
             <Link className={classes.link} to="/signup">Signup</Link>
          </Button>
+          </div>
         </Toolbar>
       </AppBar>
     </div>
