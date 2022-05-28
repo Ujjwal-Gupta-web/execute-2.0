@@ -8,6 +8,7 @@ import Container from '@material-ui/core/Container';
 import ServiceCard from '../components/ServiceCard'
 import Filter from '../components/Filter';
 
+
 const services = [
   {
     "profileimage": './images/Birthday.jpg',

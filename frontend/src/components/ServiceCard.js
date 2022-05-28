@@ -11,6 +11,16 @@ import ShareIcon from '@material-ui/icons/Share';
 import Badge from '@material-ui/core/Badge';
 import GradeIcon from '@material-ui/icons/Grade';
 import Button from '@material-ui/core/Button';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import Slide from '@material-ui/core/Slide';
+
+const Transition = React.forwardRef(function Transition(props, ref) {
+    return <Slide direction="up" ref={ref} {...props} />;
+  });
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -38,38 +48,78 @@ const useStyles = makeStyles((theme) => ({
 
 export default function RecipeReviewCard({service}) {
   const classes = useStyles();
+  const [open, setOpen] = React.useState(false);
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
 
+  const handleClose = () => {
+    setOpen(false);
+  };
   return (
-    <Card className={`${classes.root} service-card`}>
-      <CardMedia
-        className={classes.media}
-        image={service.profileimage}
-        title="Paella dish"
-      />
-      <CardContent>
-        <Typography gutterBottom variant="h6" component="h2">
-            {service.name}
-        </Typography>
-        <Typography variant="body" color="textSecondary" component="p">
-            {
-                ((service.address).length>50)?((service.address).substring(0,50)+"...."): service.address
-            }
-        </Typography>
-      </CardContent>
-      <CardActions disableSpacing>
-            <Badge badgeContent={service.rating} color="secondary">
-                <GradeIcon/>
-            </Badge>
-        <Typography color='primary' variant='body1' className={classes.reviews}>{service.reviews} reviews</Typography>
-      </CardActions>
-      <CardActions disableSpacing>
-        <Button variant="contained" size="large" color="secondary" aria-label="buy" className='priceTag' >
-            &#8377; {service.price}
-        </Button>
-        <IconButton className={classes.share} aria-label="share">
-          <ShareIcon />
-        </IconButton>
-      </CardActions>
-    </Card>
+      <>
+
+        <Card className={`${classes.root}`} onClick={handleClickOpen}>
+        <CardMedia
+            className={classes.media}
+            image={service.profileimage}
+            // title="Paella dish"
+        />
+        <CardContent>
+            <Typography gutterBottom variant="h6" component="h2">
+                {service.name}
+            </Typography>
+            <Typography variant="body" color="textSecondary" component="p">
+                {
+                    ((service.address).length>50)?((service.address).substring(0,50)+"...."): service.address
+                }
+            </Typography>
+        </CardContent>
+        <CardActions disableSpacing>
+                <Badge badgeContent={service.rating} color="secondary">
+                    <GradeIcon/>
+                </Badge>
+            <Typography color='primary' variant='body1' className={classes.reviews}>{service.reviews} reviews</Typography>
+        </CardActions>
+        <CardActions disableSpacing>
+            <Button variant="contained" size="large" color="secondary" aria-label="buy" className='priceTag' >
+                &#8377; {service.price}
+            </Button>
+            <IconButton className={classes.share} aria-label="share">
+            <ShareIcon />
+            </IconButton>
+        </CardActions>
+
+        </Card>
+        <Dialog
+            open={open}
+            TransitionComponent={Transition}
+            keepMounted
+            maxWidth="lg"
+            onClose={handleClose}
+            aria-labelledby="alert-dialog-slide-title"
+            aria-describedby="alert-dialog-slide-description"
+        >
+            <DialogTitle id="alert-dialog-slide-title">{"Use Google's location service?"}</DialogTitle>
+            <DialogContent>
+            <CardMedia
+                className={classes.media}
+                image={service.profileimage}
+            />
+            <DialogContentText id="alert-dialog-slide-description">
+                Let Google help apps determine location. This means sending anonymous location data to
+                Google, even when no apps are running.
+            </DialogContentText>
+            </DialogContent>
+            <DialogActions>
+            <Button onClick={handleClose} color="primary">
+                Disagree
+            </Button>
+            <Button onClick={handleClose} color="primary">
+                Agree
+            </Button>
+            </DialogActions>
+        </Dialog>
+      </>
   );
 }
