@@ -28,10 +28,12 @@ router.get("/business",async(req,res)=>{
         for(let val of review){
             rating[val.business_id]+=1;
         }
+        let response=[]
         for(let val of business){
-            val['rating']=(rating[val._id]/(Object.keys(rating).length))
+            response.push({rating:5*(rating[val._id]/(Object.keys(rating).length)),business:val})            
         }
-        return res.status(200).json({tag:true,business})
+      
+        return res.status(200).json({tag:true,response})
     }
     catch(e){
         return res.status(500).json({tag:true,data:[]})

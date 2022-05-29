@@ -29,9 +29,9 @@ router.get("/auth", verifyToken ,async (req, res) => {
 router.post("/login", async (req, res) => {
 
     const obj = req.body;
-    const result = await Business.findOne({ business_email: obj.email });
+    const result = await Business.findOne({ business_email: obj.business_email });
     if (result) {
-        bcrypt.compare(req.body.password, result.business_password, function (err, hashed) {
+        bcrypt.compare(req.body.business_password, result.business_password, function (err, hashed) {
             if (hashed === true) {
                 const token = jwt.sign({ id: result._id }, process.env.SECRET_KEY);
                 return res.json({ "message": "Login success", "token": token, "tag": true })
@@ -63,7 +63,7 @@ router.post("/signup", async (req, res) => {
         business_city
     }= req.body;
 
-    const result = await User.findOne({ business_email });
+    const result = await Business.findOne({ business_email });
 
     if (result) {
         return res.json({ "message": "Business already exists", "tag": false })
@@ -95,9 +95,6 @@ router.post("/signup", async (req, res) => {
     }
 
 })
-
-
-
 
 
 module.exports = router;
