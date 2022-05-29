@@ -2,6 +2,7 @@ import React from "react";
 import Navbar from "../components/Navbar";
 import img1 from "../assets/img1.jpg";
 import "../assets/index.css";
+import {useRef} from 'react';
 import { useState } from "react";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import FilterVintageIcon from "@mui/icons-material/FilterVintage";
