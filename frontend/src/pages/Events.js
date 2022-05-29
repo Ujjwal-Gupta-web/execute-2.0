@@ -6,29 +6,34 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import EventCard from '../components/EventCard'
+import {Link} from 'react-router-dom'
 
 const events = [
     {
+      id: 1,
       url: './images/Birthday.jpg',
       title: 'Birthday'
     },
     {
+      id: 2,
       url: './images/Wedding.jpg',
       title: 'Wedding'
     },
     {
+      id: 3,
       url: './images/Reception.jpg',
       title: 'Reception'
     },
     {
+      id: 4,
       url: './images/Party.jpg',
       title: 'Party'
     },
   ];
-
+  
 const useStyles = makeStyles((theme) => ({
   heroContent: {
-    backgroundColor: theme.palette.background.paper,
+    backgroundColor: "#ea580c",
     padding: theme.spacing(8, 0, 6),
   },
   cardGrid: {
@@ -36,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: theme.spacing(8),
   },
   card: {
-    height: '100%',
+    // height: '100%',
     display: 'flex',
     flexDirection: 'column',
   },
@@ -57,20 +62,16 @@ export default function Events() {
   const classes = useStyles();
 
   return (
-    <React.Fragment>
+    <>
       <CssBaseline />
-        <div>
             <Navbar />
-        </div>
-        
       <main>
-        {/* Hero unit */}
         <div className={classes.heroContent}>
           <Container maxWidth="sm">
-            <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
+            <Typography component="h1" variant="h2" align="center" style={{color: "white"}} gutterBottom>
             Life is an event. Make it memorable.
             </Typography>
-            <Typography variant="h5" align="center" color="textSecondary" paragraph>
+            <Typography variant="h5" align="center" style={{color: "#e6e6e6"}} paragraph>
             Our business will make memories with you.
             </Typography>
           </Container>
@@ -79,10 +80,12 @@ export default function Events() {
           <Grid container spacing={4}>
             {events.map((event,i) => (
               <Grid item key={i} xs={12} sm={6} md={4}>
-                <EventCard
-                    url= {event.url}
-                    title={event.title}
-                />
+                <Link className={classes.link} to={`/custom-event#${event.id}`}>
+                  <EventCard
+                      url= {event.url}
+                      title={event.title}
+                  />
+                </Link>
               </Grid>
             ))}
           </Grid>
@@ -97,6 +100,6 @@ export default function Events() {
                 We are event wala
         </Typography>
       </footer>
-    </React.Fragment>
+    </>
   );
 }

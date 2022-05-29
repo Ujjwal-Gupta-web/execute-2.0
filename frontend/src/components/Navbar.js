@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
   },
   navbar: {
     backgroundColor: "#e6e6e6",
-    borderRadius: "15px",
+    borderRadius: "0 0 15px 15px",
     boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px"
     
   },
@@ -30,10 +30,15 @@ const useStyles = makeStyles((theme) => ({
   },
   link: {
     textDecoration: "none",
-    color: "red",
+    color: "#ea580c",
     fontSize: "1.2rem",
     fontWeight: "bold",
     fontFamily : ["Poppins", "sans-serif"]
+  },
+  navbarCol: {
+    display: "flex",
+
+    flexDirection: "column",
   }
 }));
 
@@ -47,10 +52,11 @@ export default function ButtonAppBar() {
   return (
     <div className={classes.root}>
       <AppBar position="static" className={classes.navbar}>
-        <Toolbar>
+        <Toolbar className={classes.navbarCol} >
           <Typography variant="h6" className={classes.title}>
             <Link className="text-orange-600" to="/">Event wala</Link>
           </Typography>
+          <div>
           <Button color="inherit">
             <Link className={classes.link} to="/">Home</Link>
          </Button>
@@ -66,6 +72,7 @@ export default function ButtonAppBar() {
           <Button color="inherit">
             <Link className={classes.link} to="/signup">Signup</Link>
          </Button>
+          </div>
         </Toolbar>
       </AppBar>
     </div>

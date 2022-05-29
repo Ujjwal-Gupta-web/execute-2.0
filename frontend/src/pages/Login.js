@@ -13,6 +13,11 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import {deepOrange} from '@mui/material/colors'
+import Navbar from '../components/Navbar'
+import {useState} from 'react'
+
+import {login_user} from "../controllers/user"
+import {login_business} from "../controllers/business"
 
 function Copyright() {
   return (
@@ -36,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
   },
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
+    backgroundColor: "#ea580c",
   },
   form: {
     width: '100%', // Fix IE 11 issue.
@@ -50,9 +55,54 @@ const useStyles = makeStyles((theme) => ({
 export default function SignIn() {
   const classes = useStyles();
 
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  // API INTEGRATED
+  const handleInput = (e) => {
+
+    // e.preventDefault();
+
+    // if(type===10){
+    //   let obj={
+    //     email,
+    //     password
+    //   }
+    //   login_user(obj).then(data=>{
+    //     console.log(data)
+    //     if(data.tag){
+    //       localStorage.setItem("user",data.token)
+    //     }
+    //     else{
+    //       alert(data.message);
+    //     }});
+    // }
+    // else{
+    //   let obj={
+    //     business_email:email,
+    //     business_password:password
+    //   }
+    //   login_business(obj).then(data=>{
+    //     console.log(data)
+    //     if(data.tag){
+    //       localStorage.setItem("business",data.token)
+    //     }
+    //     else{
+    //       alert(data.message);
+    //     }});
+    // }
+    // setEmail('');
+    // setPassword('');
+  }
+
   return (
+    <>
+     <div className="nav">
+        <Navbar />
+      </div>
     <Container component="main" maxWidth="xs">
       <CssBaseline />
+     
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon style={{color: deepOrange}}/>
@@ -71,6 +121,9 @@ export default function SignIn() {
             name="email"
             autoComplete="email"
             autoFocus
+            onChange={(e)=> setEmail(e.target.value)}
+            value={email}
+
           />
           <TextField
             variant="outlined"
@@ -82,6 +135,8 @@ export default function SignIn() {
             type="password"
             id="password"
             autoComplete="current-password"
+            onChange={(e)=> setPassword(e.target.value)}
+            value={password}
           />
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
@@ -90,6 +145,7 @@ export default function SignIn() {
           <Button
             type="submit"
             fullWidth
+            onClick={handleInput}
             variant="contained"
             color="primary"
             className={classes.submit}
@@ -114,5 +170,6 @@ export default function SignIn() {
         
       </Box>
     </Container>
+    </>
   );
 }
